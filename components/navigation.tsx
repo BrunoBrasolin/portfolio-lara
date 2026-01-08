@@ -63,7 +63,7 @@ export function Navigation() {
             <div className="pt-2">
               <Button asChild className="w-full">
                 <a href="#contact" onClick={() => setIsOpen(false)}>
-                  Partner With Me
+                  Entre em contato
                 </a>
               </Button>
             </div>
