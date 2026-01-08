@@ -49,7 +49,7 @@ export function Footer() {
 
           <a href="https://leviathan.dev.br/" className="inline-flex items-center gap-2 text-sm text-background/60 hover:text-background transition" target="_blank" rel="noopener noreferrer">
             <span>Desenvolvido por</span>
-            <img src="/gamidas.png" alt="Gamidas" loading="lazy" className="h-10 w-auto object-contain opacity-80" />
+            <img src="gamidas.png" alt="Gamidas" loading="lazy" className="h-10 w-auto object-contain opacity-80" />
           </a>
         </div>
 

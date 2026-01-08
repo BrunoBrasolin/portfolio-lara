@@ -29,7 +29,7 @@ export function Navigation() {
     <nav className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent",)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <a href="#" className="font-serif text-xl lg:text-2xl font-bold tracking-tight text-foreground">
+          <a href="#" className={cn("font-serif text-xl lg:text-2xl font-bold tracking-tight text-foreground", isScrolled ? "text-black" : "text-white",)}>
             Lara Brazolin
           </a>
 
@@ -40,12 +40,12 @@ export function Navigation() {
               </a>
             ))}
             <Button asChild size="sm">
-              <a href="#contact">Partner With Me</a>
+              <a href="#contact">Entre em contato</a>
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="lg:hidden p-2 text-foreground" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+          <button className={cn("lg:hidden p-2 text-foreground", isScrolled ? "text-black" : "text-white",)} onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
