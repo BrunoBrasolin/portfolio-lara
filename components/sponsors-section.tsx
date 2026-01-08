@@ -3,19 +3,19 @@ import { Card, CardContent } from "@/components/ui/card"
 const sponsors = [
   {
     name: "Maikai Surf Social",
-    logo: "/maikai_surf_social.png"
+    logo: "maikai_surf_social.png"
   },
   {
     name: "Motion Fit",
-    logo: "/motion_fit.png"
+    logo: "motion_fit.png"
   },
   {
     name: "Clínica de Fraturas Mongaguá",
-    logo: "/clinica_de_fraturas_mongagua.png"
+    logo: "clinica_de_fraturas_mongagua.png"
   },
   {
     name: "Essence Surf",
-    logo: "/essence_surf.png"
+    logo: "essence_surf.png"
   }
 ]
 
