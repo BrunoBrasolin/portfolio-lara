@@ -39,6 +39,7 @@ const defaultStats: InstagramStats = {
 }
 
 export default function AdminPage() {
+  return(<></>);
   const [stats, setStats] = useState<InstagramStats>(defaultStats)
   const [posts, setPosts] = useState<RecentPost[]>([])
   const [jsonInput, setJsonInput] = useState("")
