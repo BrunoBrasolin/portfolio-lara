@@ -5,18 +5,18 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const photos = [
-  { id: 1, src: "/lara_3.jpeg", alt: "Lara Brazolin" },
-  { id: 2, src: "/lara_4.jpeg", alt: "Lara Brazolin" },
-  { id: 2, src: "/lara_5.jpeg", alt: "Lara Brazolin" },
-  { id: 2, src: "/lara_6.jpeg", alt: "Lara Brazolin" },
-  { id: 2, src: "/lara_7.jpeg", alt: "Lara Brazolin" },
-  { id: 2, src: "/lara_8.jpeg", alt: "Lara Brazolin" },
-  { id: 2, src: "/lara_10.jpeg", alt: "Lara Brazolin" },
-  { id: 2, src: "/lara_11.jpeg", alt: "Lara Brazolin" },
-  { id: 2, src: "/lara_12.jpeg", alt: "Lara Brazolin" },
-  { id: 2, src: "/lara_13.jpeg", alt: "Lara Brazolin" },
-  { id: 2, src: "/lara_14.jpeg", alt: "Lara Brazolin" },
-  { id: 2, src: "/lara_15.jpeg", alt: "Lara Brazolin" },
+  { id: 1, src: "lara_3.jpeg", alt: "Lara Brazolin" },
+  { id: 2, src: "lara_4.jpeg", alt: "Lara Brazolin" },
+  { id: 2, src: "lara_5.jpeg", alt: "Lara Brazolin" },
+  { id: 2, src: "lara_6.jpeg", alt: "Lara Brazolin" },
+  { id: 2, src: "lara_7.jpeg", alt: "Lara Brazolin" },
+  { id: 2, src: "lara_8.jpeg", alt: "Lara Brazolin" },
+  { id: 2, src: "lara_10.jpeg", alt: "Lara Brazolin" },
+  { id: 2, src: "lara_11.jpeg", alt: "Lara Brazolin" },
+  { id: 2, src: "lara_12.jpeg", alt: "Lara Brazolin" },
+  { id: 2, src: "lara_13.jpeg", alt: "Lara Brazolin" },
+  { id: 2, src: "lara_14.jpeg", alt: "Lara Brazolin" },
+  { id: 2, src: "lara_15.jpeg", alt: "Lara Brazolin" },
 ]
 
 export function PhotoGallery() {

@@ -7,7 +7,7 @@ export function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/lara_1.jpeg"
+          src="lara_1.jpeg"
           alt="Lara Brazolin surfing a large wave"
           className="w-full h-full object-cover"
         />
@@ -32,7 +32,7 @@ export function HeroSection() {
               <a href="#contact">Entre em contato</a>
             </Button>
             <Button size="lg" variant="outline" className="min-w-[200px] bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20" asChild>
-              <a href="https://www.instagram.com/larabrazolin_/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.comlarabrazolin_/" target="_blank" rel="noopener noreferrer">
                 <Instagram className="w-5 h-5 mr-2" />
                 @larabrazolin_
               </a>

@@ -19,7 +19,7 @@ const contactMethods = [
     icon: Instagram,
     label: "Instagram",
     value: "larabrazolin_",
-    href: "https://www.instagram.com/larabrazolin_/",
+    href: "https://www.instagram.comlarabrazolin_/",
   },
 ]
 

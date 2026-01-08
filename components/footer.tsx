@@ -1,7 +1,7 @@
 import { Instagram, Twitter, Youtube, Facebook, Mail } from "lucide-react"
 
 const socialLinks = [
-  { icon: Instagram, href: "https://www.instagram.com/larabrazolin_/", label: "Instagram" },
+  { icon: Instagram, href: "https://www.instagram.comlarabrazolin_/", label: "Instagram" },
   { icon: Youtube, href: "https://youtube.com", label: "YouTube" }
 ]
 

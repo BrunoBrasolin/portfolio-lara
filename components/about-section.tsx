@@ -14,7 +14,7 @@ export function AboutSection() {
           {/* Image */}
           <div className="relative">
             <div className="aspect-[4/5] rounded-lg overflow-hidden">
-              <img src="/lara_2.jpeg" alt="Lara Brazolin portrait" className="w-full h-full object-cover" />
+              <img src="lara_2.jpeg" alt="Lara Brazolin portrait" className="w-full h-full object-cover" />
             </div>
             {/* <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground p-6 rounded-lg shadow-xl hidden sm:block">
               <p className="font-serif text-3xl font-bold">15</p>
