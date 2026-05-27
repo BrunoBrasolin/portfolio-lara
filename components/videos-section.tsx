@@ -3,94 +3,76 @@
 import { useState } from "react"
 import { Play, X } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { urlFor, type VideosData, type VideoItem } from "@/lib/sanity"
 
-const videos = [
-  {
-    id: "1",
-    title: "Vídeo Lara Brazolin 1",
-    thumbnail: "lara_11.jpeg",
-    embedUrl: "https://www.youtube.com/embed/Kz7L71cJmos",
-    platform: "YouTube",
-  },
-  {
-    id: "2",
-    title: "Vídeo Lara Brazolin 2",
-    thumbnail: "lara_2.jpeg",
-    embedUrl: "https://www.youtube.com/embed/r1hGW88gCGU",
-    platform: "YouTube",
-  },
-  {
-    id: "3",
-    title: "Vídeo Lara Brazolin 3",
-    thumbnail: "lara_12.jpeg",
-    embedUrl: "https://www.youtube.com/embed/hk6u1iLHQFM",
-    platform: "YouTube",
-  },
-  {
-    id: "4",
-    title: "Vídeo Lara Brazolin 4",
-    thumbnail: "lara_15.jpeg",
-    embedUrl: "https://www.youtube.com/embed/QpS0coC8kk4",
-    platform: "YouTube",
-  },
-  {
-    id: "5",
-    title: "Vídeo Lara Brazolin 5",
-    thumbnail: "lara_16.jpeg",
-    embedUrl: "https://www.youtube.com/embed/1uONT_ZmisA",
-    platform: "YouTube",
-  },
-  {
-    id: "6",
-    title: "Vídeo Lara Brazolin 6",
-    thumbnail: "lara_17.jpeg",
-    embedUrl: "https://www.youtube.com/embed/Rfo28N4q8uA",
-    platform: "YouTube",
-  },
-  {
-    id: "7",
-    title: "Vídeo Lara Brazolin 7",
-    thumbnail: "lara_6.jpeg",
-    embedUrl: "https://www.youtube.com/embed/Mg44l4VGMKM",
-    platform: "YouTube",
-  },
-  {
-    id: "8",
-    title: "Vídeo Lara Brazolin 8",
-    thumbnail: "lara_9.jpeg",
-    embedUrl: "https://www.youtube.com/embed/U5Wii0wd8OQ",
-    platform: "YouTube",
-  },
+interface VideosSectionProps {
+  data?: VideosData | null
+}
+
+// Fallback videos when Sanity is not configured
+const fallbackVideos: VideoItem[] = [
+  { _key: "1", title: "Vídeo Lara Brazolin 1", thumbnail: null as unknown as VideoItem["thumbnail"], embedUrl: "https://www.youtube.com/embed/Kz7L71cJmos", platform: "YouTube" },
+  { _key: "2", title: "Vídeo Lara Brazolin 2", thumbnail: null as unknown as VideoItem["thumbnail"], embedUrl: "https://www.youtube.com/embed/r1hGW88gCGU", platform: "YouTube" },
+  { _key: "3", title: "Vídeo Lara Brazolin 3", thumbnail: null as unknown as VideoItem["thumbnail"], embedUrl: "https://www.youtube.com/embed/hk6u1iLHQFM", platform: "YouTube" },
+  { _key: "4", title: "Vídeo Lara Brazolin 4", thumbnail: null as unknown as VideoItem["thumbnail"], embedUrl: "https://www.youtube.com/embed/QpS0coC8kk4", platform: "YouTube" },
+  { _key: "5", title: "Vídeo Lara Brazolin 5", thumbnail: null as unknown as VideoItem["thumbnail"], embedUrl: "https://www.youtube.com/embed/1uONT_ZmisA", platform: "YouTube" },
+  { _key: "6", title: "Vídeo Lara Brazolin 6", thumbnail: null as unknown as VideoItem["thumbnail"], embedUrl: "https://www.youtube.com/embed/Rfo28N4q8uA", platform: "YouTube" },
+  { _key: "7", title: "Vídeo Lara Brazolin 7", thumbnail: null as unknown as VideoItem["thumbnail"], embedUrl: "https://www.youtube.com/embed/Mg44l4VGMKM", platform: "YouTube" },
+  { _key: "8", title: "Vídeo Lara Brazolin 8", thumbnail: null as unknown as VideoItem["thumbnail"], embedUrl: "https://www.youtube.com/embed/U5Wii0wd8OQ", platform: "YouTube" },
 ]
 
-export function VideosSection() {
+const fallbackThumbnails = [
+  "lara_11.jpeg",
+  "lara_2.jpeg",
+  "lara_12.jpeg",
+  "lara_15.jpeg",
+  "lara_16.jpeg",
+  "lara_17.jpeg",
+  "lara_6.jpeg",
+  "lara_9.jpeg",
+]
+
+const fallbackData: VideosData = {
+  sectionLabel: "Videos",
+  title: "Watch Me Ride",
+  description: "Competition highlights, travel vlogs, and behind-the-scenes content.",
+  videoList: fallbackVideos,
+}
+
+export function VideosSection({ data }: VideosSectionProps) {
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
+
+  const content = data || fallbackData
+  const videos = content.videoList || fallbackVideos
+
+  const getThumbnailUrl = (video: VideoItem, index: number) => {
+    if (video.thumbnail) {
+      return urlFor(video.thumbnail).url()
+    }
+    return fallbackThumbnails[index] || fallbackThumbnails[0]
+  }
 
   return (
     <section id="videos" className="py-20 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-3">Videos</p>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Watch Me Ride</h2>
+          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-3">{content.sectionLabel}</p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">{content.title}</h2>
           <p className="max-w-2xl mx-auto text-muted-foreground">
-            Competition highlights, travel vlogs, and behind-the-scenes content.
+            {content.description}
           </p>
         </div>
 
         {/* Video Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {videos.map((video) => (
-            <Card
-              key={video.id}
-              className="overflow-hidden group cursor-pointer"
-              onClick={() => setActiveVideo(video.id)}
-            >
+        <div className="grid items-start md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {videos.map((video, index) => (
+            <Card key={video._key} className="overflow-hidden group cursor-pointer pt-0" onClick={() => setActiveVideo(video._key)}>
               <div className="relative aspect-video">
                 <img
-                  src={video.thumbnail || "/placeholder.svg"}
+                  src={getThumbnailUrl(video, index)}
                   alt={video.title}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-foreground/30 flex items-center justify-center">
                   <div className="w-16 h-16 rounded-full bg-primary-foreground/90 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -123,11 +105,11 @@ export function VideosSection() {
           </button>
           <div className="w-full max-w-4xl aspect-video">
             <iframe
-              src={videos.find((v) => v.id === activeVideo)?.embedUrl}
+              src={videos.find((v) => v._key === activeVideo)?.embedUrl}
               className="w-full h-full rounded-lg"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              title={videos.find((v) => v.id === activeVideo)?.title}
+              title={videos.find((v) => v._key === activeVideo)?.title}
             />
           </div>
         </div>

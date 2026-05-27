@@ -1,29 +1,57 @@
-import { Instagram, Twitter, Youtube, Facebook, Mail } from "lucide-react"
+import { Instagram, Twitter, Youtube, Facebook } from "lucide-react"
+import { urlFor, type FooterData, type FooterLink, type SocialLink } from "@/lib/sanity"
 
-const socialLinks = [
-  { icon: Instagram, href: "https://www.instagram.comlarabrazolin_/", label: "Instagram" },
-  { icon: Youtube, href: "https://youtube.com", label: "YouTube" }
-]
+interface FooterProps {
+  data?: FooterData | null
+}
 
-const footerLinks = [
+const socialIconMap = {
+  instagram: Instagram,
+  youtube: Youtube,
+  twitter: Twitter,
+  facebook: Facebook,
+}
+
+// Fallback footer links when Sanity is not configured
+const fallbackFooterLinks: FooterLink[] = [
   { label: "Sobre", href: "#about" },
   { label: "Achievements", href: "#achievements" },
   { label: "Galeria", href: "#gallery" },
   { label: "Métricas", href: "#instagram" },
   { label: "Parceiros", href: "#sponsors" },
-  { label: "Contato", href: "#contact" }
+  { label: "Contato", href: "#contact" },
 ]
 
-export function Footer() {
+const fallbackSocialLinks: SocialLink[] = [
+  { platform: "instagram", url: "https://www.instagram.com/larabrazolin_/" },
+  { platform: "youtube", url: "https://youtube.com" },
+]
+
+const fallbackData: FooterData = {
+  brandName: "Lara Brazolin",
+  brandDescription: "Surfista top.",
+  footerLinks: fallbackFooterLinks,
+  socialLinks: fallbackSocialLinks,
+  developerName: "Gamidas",
+  developerUrl: "https://leviathan.dev.br/",
+  developerLogo: null as unknown as FooterData["developerLogo"],
+}
+
+export function Footer({ data }: FooterProps) {
+  const content = data || fallbackData
+  const footerLinks = content.footerLinks || fallbackFooterLinks
+
+  const developerLogoUrl = content.developerLogo ? urlFor(content.developerLogo).url() : "gamidas.png"
+
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <p className="font-serif text-2xl font-bold mb-4">Lara Brazolin</p>
+            <p className="font-serif text-2xl font-bold mb-4">{content.brandName}</p>
             <p className="text-background/70 text-sm leading-relaxed">
-              Surfista top.
+              {content.brandDescription}
             </p>
           </div>
 
@@ -44,15 +72,24 @@ export function Footer() {
 
         <div className="pt-8 border-t border-background/20 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-background/60">
-            © {new Date().getFullYear()} Lara Brazolin. All rights reserved.
+            © {new Date().getFullYear()} {content.brandName}. All rights reserved.
           </p>
 
-          <a href="https://leviathan.dev.br/" className="inline-flex items-center gap-2 text-sm text-background/60 hover:text-background transition" target="_blank" rel="noopener noreferrer">
+          <a
+            href={content.developerUrl}
+            className="inline-flex items-center gap-2 text-sm text-background/60 hover:text-background transition"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span>Desenvolvido por</span>
-            <img src="gamidas.png" alt="Gamidas" loading="lazy" className="h-10 w-auto object-contain opacity-80" />
+            <img
+              src={developerLogoUrl}
+              alt={content.developerName}
+              loading="lazy"
+              className="h-10 w-auto object-contain opacity-80"
+            />
           </a>
         </div>
-
       </div>
     </footer>
   )
