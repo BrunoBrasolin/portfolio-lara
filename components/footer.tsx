@@ -23,7 +23,7 @@ export function Footer() {
           <div>
             <p className="font-serif text-2xl font-bold mb-4">Lara Brazolin</p>
             <p className="text-background/70 text-sm leading-relaxed">
-              Surfista amadora mas top.
+              Surfista top.
             </p>
           </div>
 
